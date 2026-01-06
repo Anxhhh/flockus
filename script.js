@@ -62,8 +62,8 @@ function terminalBeep() {
   const gain = audioCtx.createGain();
 
   osc.type = "sine";
-  osc.frequency.value = 880; // terminal beep
-  gain.gain.value = 0.03;   // very soft
+  osc.frequency.value = 2000; // terminal beep
+  gain.gain.value = 0.02;   // very soft
 
   osc.connect(gain);
   gain.connect(audioCtx.destination);
@@ -71,8 +71,10 @@ function terminalBeep() {
   osc.start();
   osc.stop(audioCtx.currentTime + 0.08);
 }
-document.addEventListener("keydown", unlockAudio, { once: true });
-document.addEventListener("click", unlockAudio, { once: true });
+/* ---------- AUDIO UNLOCK (MOUSE ONLY) ---------- */
+
+document.addEventListener("mousemove", unlockAudio, { once: true });
+document.addEventListener("touchmove", unlockAudio, { once: true });
 
 /* ---------- TIME + DATE ---------- */
 
