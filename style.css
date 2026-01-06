@@ -204,3 +204,57 @@ body {
     line-height: 1.6;
   }
 }
+/* ===============================
+   RESPONSIVE TERMINAL FIX
+   =============================== */
+
+/* Prevent horizontal scroll globally */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Tablet & below */
+@media (max-width: 768px) {
+
+  /* Allow terminal text to wrap */
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+
+  /* Reduce padding */
+  .terminal {
+    padding: 18px;
+    font-size: 12.5px;
+    line-height: 1.65;
+  }
+
+  /* Reduce spacing slightly */
+  .output {
+    margin-bottom: 10px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+
+  .terminal {
+    padding: 14px;
+    font-size: 12px;
+  }
+
+  .hint {
+    opacity: 0.35;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+
+  .terminal {
+    padding: 12px;
+    font-size: 11.5px;
+  }
+}
