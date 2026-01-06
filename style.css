@@ -90,6 +90,15 @@ body {
 :-webkit-full-screen {
   cursor: none;
 }
+/* ---------------- NEGATIVE SELECTION ---------------- */
+
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 /* ---------------- RESPONSIVE TUNING ---------------- */
 
 /* Prevent horizontal scroll on small screens */
