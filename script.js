@@ -29,12 +29,36 @@ let b = 0;
   } else {
     setTimeout(() => {
       bootEl.style.display = "none";
-      appEl.classList.remove("hidden");
-      wake();
+appEl.classList.remove("hidden");
+terminalBeep();
+wake();
     }, 320);
   }
 })();
+/* ---------- TERMINAL BEEP (EXPERIMENTAL) ---------- */
 
+let beepReady = false;
+
+function terminalBeep() {
+  if (!beepReady) return;
+
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+
+  osc.type = "sine";
+  osc.frequency.value = 880; // terminal-like beep
+  gain.gain.value = 0.03;    // very soft
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.start();
+  osc.stop(ctx.currentTime + 0.08); // short beep
+}
+const ENABLE_BEEP = true;
+
+if (ENABLE_BEEP) terminalBeep();
 /* ---------- TIME + DATE ---------- */
 
 let lastMinute = null;
