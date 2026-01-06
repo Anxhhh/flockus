@@ -30,35 +30,50 @@ let b = 0;
     setTimeout(() => {
       bootEl.style.display = "none";
 appEl.classList.remove("hidden");
+bootFinished = true;
 terminalBeep();
 wake();
+
     }, 320);
   }
 })();
-/* ---------- TERMINAL BEEP (EXPERIMENTAL) ---------- */
+/* ---------- TERMINAL BEEP (FIXED) ---------- */
 
-let beepReady = false;
+let audioCtx = null;
+let bootFinished = false;
+let audioUnlocked = false;
+
+function unlockAudio() {
+  if (audioUnlocked) return;
+
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  audioUnlocked = true;
+
+  // If boot already finished, play beep now
+  if (bootFinished) {
+    terminalBeep();
+  }
+}
 
 function terminalBeep() {
-  if (!beepReady) return;
+  if (!audioUnlocked || !audioCtx) return;
 
-  const ctx = new (window.AudioContext || window.webkitAudioContext)();
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
 
   osc.type = "sine";
-  osc.frequency.value = 880; // terminal-like beep
-  gain.gain.value = 0.03;    // very soft
+  osc.frequency.value = 880; // terminal beep
+  gain.gain.value = 0.03;   // very soft
 
   osc.connect(gain);
-  gain.connect(ctx.destination);
+  gain.connect(audioCtx.destination);
 
   osc.start();
-  osc.stop(ctx.currentTime + 0.08); // short beep
+  osc.stop(audioCtx.currentTime + 0.08);
 }
-const ENABLE_BEEP = true;
+document.addEventListener("keydown", unlockAudio, { once: true });
+document.addEventListener("click", unlockAudio, { once: true });
 
-if (ENABLE_BEEP) terminalBeep();
 /* ---------- TIME + DATE ---------- */
 
 let lastMinute = null;
