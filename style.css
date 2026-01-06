@@ -137,3 +137,70 @@ body {
     font-size: 11.5px;
   }
 }
+/* =========================================================
+   RESPONSIVE BREAKPOINTS — TERMINAL PRESERVED
+   ========================================================= */
+
+/* Base safety: prevent sideways scroll */
+body {
+  overflow-x: hidden;
+}
+
+/* ---------------- LARGE TABLETS / SMALL LAPTOPS ---------------- */
+@media (max-width: 1024px) {
+  .terminal {
+    padding: 24px;
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+}
+
+/* ---------------- TABLETS ---------------- */
+@media (max-width: 768px) {
+  .terminal {
+    padding: 20px;
+    font-size: 13px;
+    line-height: 1.68;
+  }
+
+  /* allow terminal wrapping only on smaller screens */
+  pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}
+
+/* ---------------- LARGE PHONES ---------------- */
+@media (max-width: 600px) {
+  .terminal {
+    padding: 18px;
+    font-size: 12.5px;
+    line-height: 1.65;
+  }
+
+  .output {
+    margin-bottom: 12px;
+  }
+}
+
+/* ---------------- PHONES ---------------- */
+@media (max-width: 480px) {
+  .terminal {
+    padding: 16px;
+    font-size: 12px;
+    line-height: 1.62;
+  }
+
+  .hint {
+    opacity: 0.38; /* slightly clearer on phones */
+  }
+}
+
+/* ---------------- VERY SMALL PHONES ---------------- */
+@media (max-width: 360px) {
+  .terminal {
+    padding: 14px;
+    font-size: 11.5px;
+    line-height: 1.6;
+  }
+}
