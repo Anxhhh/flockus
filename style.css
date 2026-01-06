@@ -258,3 +258,35 @@ html, body {
     font-size: 11.5px;
   }
 }
+/* =====================================
+   HARD MOBILE TERMINAL OVERRIDE
+   (do not move this)
+   ===================================== */
+
+@media screen and (max-width: 768px) {
+
+  .terminal pre {
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
+  }
+
+  .terminal {
+    padding: 16px !important;
+    font-size: 12.5px !important;
+    line-height: 1.6 !important;
+  }
+
+  body {
+    overflow-x: hidden !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  .terminal {
+    padding: 14px !important;
+    font-size: 12px !important;
+  }
+}
